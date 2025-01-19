@@ -1,0 +1,13 @@
+import Algebra.Theories.Basic
+import Algebra.Theories.Category
+import Algebra.Theories.Group
+import Algebra.Theories.Groupoid
+import Algebra.Theories.Monoid
+import Algebra.Theories.Rig
+import Algebra.Theories.Ring
+import Algebra.Theories.Semicategory
+import Algebra.Theories.Semigroup
+import Algebra.Theories.Semiring
+import Algebra.Theories.UnitalRig
+import Algebra.Theories.UnitalRing
+import Algebra.Theories.UnitalSemiring
