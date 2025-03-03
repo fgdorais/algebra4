@@ -20,7 +20,7 @@ instance : DOpAssoc (no_index s.op) := ⟨Semicategory.dop_assoc⟩
 
 end Semicategory
 
-class CancelSemicategory (s : SemicategorySig β) extends Semicategory (no_index s) : Prop where
+class CancelSemicategory (s : SemicategorySig β) : Prop extends Semicategory (no_index s) where
   protected dop_left_cancel {{a b c}} (x : β b c) {y z : β a b} : s.op x y = s.op x z → y = z
   protected dop_right_cancel {{a b c}} (x : β a b) {y z : β b c} : s.op y x = s.op z x → y = z
 

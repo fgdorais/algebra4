@@ -14,7 +14,7 @@ local infixr:70 " ⋆ " => s.mul
 local infixr:65 " ⊹ " => s.add
 local notation "e" => s.one
 
-class UnitalSemiring extends Semiring (no_index s.toSemiringSig) : Prop where
+class UnitalSemiring : Prop extends Semiring (no_index s.toSemiringSig) where
   protected mul_left_id (x) : e ⋆ x = x
   protected mul_right_id (x) : x ⋆ e = x
 
@@ -37,7 +37,7 @@ instance toMulMonoid : Monoid (no_index s.toMulMonoidSig) := Monoid.infer _
 
 end UnitalSemiring
 
-class UnitalCommSemiring extends CommSemiring (no_index s.toSemiringSig) : Prop where
+class UnitalCommSemiring : Prop extends CommSemiring (no_index s.toSemiringSig) where
   protected mul_right_id (x) : x ⋆ e = x
 
 protected def UnitalCommSemiring.infer [OpAssoc s.add] [OpComm s.add] [OpAssoc s.mul] [OpComm s.mul] [OpRightDistrib s.mul s.add] [OpRightId s.mul s.one] : UnitalCommSemiring s where

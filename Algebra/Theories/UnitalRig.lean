@@ -16,7 +16,7 @@ local notation "𝟘" => s.zero
 local infixr:70 " ⋆ " => s.mul
 local notation "𝟙" => s.one
 
-class UnitalRig extends Rig (no_index s.toRigSig), UnitalSemiring (no_index s.toUnitalSemiringSig) : Prop
+class UnitalRig : Prop extends Rig (no_index s.toRigSig), UnitalSemiring (no_index s.toUnitalSemiringSig)
 
 protected def UnitalRig.infer [OpAssoc s.add] [OpComm s.add] [OpRightId s.add s.zero] [OpAssoc s.mul] [OpLeftDistrib s.mul s.add] [OpRightDistrib s.mul s.add] [OpLeftId s.mul s.one] [OpRightId s.mul s.one] [OpLeftNil s.mul s.zero] [OpRightNil s.mul s.zero] : UnitalRig s where
   add_assoc := op_assoc _
@@ -35,7 +35,7 @@ variable {s} [self : UnitalRig s]
 
 end UnitalRig
 
-class UnitalCommRig extends CommRig (no_index s.toRigSig), UnitalCommSemiring (no_index s.toUnitalSemiringSig) : Prop
+class UnitalCommRig : Prop extends CommRig (no_index s.toRigSig), UnitalCommSemiring (no_index s.toUnitalSemiringSig)
 
 protected def UnitalCommRig.infer [OpAssoc s.add] [OpComm s.add] [OpRightId s.add s.zero] [OpAssoc s.mul] [OpComm s.mul] [OpRightDistrib s.mul s.add] [OpRightId s.mul s.one] [OpRightNil s.mul s.zero] : UnitalCommRig s where
   add_assoc := op_assoc _
@@ -52,7 +52,7 @@ variable {s} [self : UnitalCommRig s]
 
 end UnitalCommRig
 
-class CancelUnitalRig extends CancelRig (no_index s.toRigSig), UnitalSemiring (no_index s.toUnitalSemiringSig) : Prop
+class CancelUnitalRig : Prop extends CancelRig (no_index s.toRigSig), UnitalSemiring (no_index s.toUnitalSemiringSig)
 
 protected def CancelUnitalRig.infer [OpAssoc s.add] [OpComm s.add] [OpRightId s.add s.zero] [OpRightCancel s.add] [OpAssoc s.mul] [OpLeftDistrib s.mul s.add] [OpRightDistrib s.mul s.add] [OpLeftId s.mul s.one] [OpRightId s.mul s.one] [OpLeftNil s.mul s.zero] [OpRightNil s.mul s.zero] : CancelUnitalRig s where
   add_assoc := op_assoc _
@@ -70,7 +70,7 @@ variable {s} [self : CancelUnitalRig s]
 
 end CancelUnitalRig
 
-class CancelUnitalCommRig extends CancelCommRig (no_index s.toRigSig), UnitalCommSemiring (no_index s.toUnitalSemiringSig) : Prop
+class CancelUnitalCommRig : Prop extends CancelCommRig (no_index s.toRigSig), UnitalCommSemiring (no_index s.toUnitalSemiringSig)
 
 protected def CancelUnitalCommRig.infer [OpAssoc s.add] [OpComm s.add] [OpRightId s.add s.zero] [OpRightCancel s.add] [OpAssoc s.mul] [OpComm s.mul] [OpRightDistrib s.mul s.add] [OpRightId s.mul s.one] [OpRightNil s.mul s.zero] : CancelUnitalCommRig s where
   add_assoc := op_assoc _

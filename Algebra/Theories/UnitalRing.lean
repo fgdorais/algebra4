@@ -17,7 +17,7 @@ local notation "𝟘" => s.zero
 local infixr:70 " ⋆ " => s.mul
 local notation "𝟙" => s.one
 
-class UnitalRing extends Ring (no_index s.toRingSig), UnitalSemiring (no_index s.toUnitalRigSig.toUnitalSemiringSig) : Prop
+class UnitalRing : Prop extends Ring (no_index s.toRingSig), UnitalSemiring (no_index s.toUnitalRigSig.toUnitalSemiringSig)
 
 protected def UnitalRing.infer [OpAssoc s.add] [OpComm s.add] [OpRightInv s.add s.neg s.zero] [OpRightId s.add s.zero] [OpAssoc s.mul] [OpLeftDistrib s.mul s.add] [OpRightDistrib s.mul s.add] [OpLeftId s.mul s.one] [OpRightId s.mul s.one] : UnitalRing s where
   add_assoc := op_assoc _
@@ -40,7 +40,7 @@ instance toCancelUnitalRig : CancelUnitalRig (no_index s.toUnitalRigSig) := Canc
 
 end UnitalRing
 
-class UnitalCommRing extends CommRing (no_index s.toRingSig), UnitalCommSemiring (no_index s.toUnitalRigSig.toUnitalSemiringSig) : Prop
+class UnitalCommRing : Prop extends CommRing (no_index s.toRingSig), UnitalCommSemiring (no_index s.toUnitalRigSig.toUnitalSemiringSig)
 
 protected def UnitalCommRing.infer [OpAssoc s.add] [OpComm s.add] [OpRightInv s.add s.neg s.zero] [OpRightId s.add s.zero] [OpAssoc s.mul] [OpComm s.mul] [OpRightDistrib s.mul s.add] [OpRightId s.mul s.one] : UnitalCommRing s where
   add_assoc := op_assoc _
