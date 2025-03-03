@@ -8,7 +8,7 @@ import Algebra.Theories.Semicategory
 namespace Algebra
 variable {α} {β : α → α → Sort _}
 
-class Category (s : CategorySig β) extends Semicategory (no_index s.toSemicategorySig): Prop where
+class Category (s : CategorySig β) : Prop extends Semicategory (no_index s.toSemicategorySig) where
   protected dop_left_id {{a b}} (x : β a b) : s.op s.id x = x
   protected dop_right_id {{a b}} (x : β a b) : s.op x s.id = x
 
@@ -27,7 +27,7 @@ instance : Semicategory (no_index s.toSemicategorySig) := Semicategory.infer _
 
 end Category
 
-class CancelCategory (s : CategorySig β) extends Category (no_index s), CancelSemicategory (no_index s.toSemicategorySig) : Prop
+class CancelCategory (s : CategorySig β) : Prop extends Category (no_index s), CancelSemicategory (no_index s.toSemicategorySig)
 
 protected def CancelCategory.infer (s : CategorySig β) [DOpAssoc s.op] [DOpLeftId s.op s.id] [DOpRightId s.op s.id] [DOpLeftCancel s.op] [DOpRightCancel s.op] : CancelCategory s where
   dop_assoc := dop_assoc _

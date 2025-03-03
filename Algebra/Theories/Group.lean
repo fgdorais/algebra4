@@ -13,7 +13,7 @@ local infixr:70 " ⋆ " => s.op
 local postfix:max "⁻¹" => s.inv
 local notation "e" => s.id
 
-class Group extends Semigroup (no_index s.toSemigroupSig) : Prop where
+class Group : Prop extends Semigroup (no_index s.toSemigroupSig) where
   protected op_right_id (x) : x ⋆ e = x
   protected op_right_inv (x) : x ⋆ x⁻¹ = e
 
@@ -51,7 +51,7 @@ instance toCancelMonoid : CancelMonoid (no_index s.toMonoidSig) := CancelMonoid.
 
 end Group
 
-class CommGroup extends Group s, CommMonoid (no_index s.toMonoidSig) : Prop where
+class CommGroup : Prop extends Group s, CommMonoid (no_index s.toMonoidSig)
 
 protected def CommGroup.infer [OpAssoc s.op] [OpComm s.op] [OpRightId s.op s.id] [OpRightInv s.op s.inv s.id] : CommGroup s where
   op_assoc := op_assoc _

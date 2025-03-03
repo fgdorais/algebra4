@@ -26,7 +26,7 @@ instance : Semicategory (no_index s.toSemicategorySig) where
 
 end Semigroup
 
-class CommSemigroup extends Semigroup s : Prop where
+class CommSemigroup : Prop extends Semigroup s where
   protected op_comm (x y) : x ⋆ y = y ⋆ x
 
 protected def CommSemigroup.infer [OpAssoc s.op] [OpComm s.op] : CommSemigroup s where

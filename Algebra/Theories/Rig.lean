@@ -15,7 +15,7 @@ local infixr:70 " ⋆ " => s.mul
 local infixr:65 " ⊹ " => s.add
 local notation "𝟘" => s.zero
 
-class Rig extends Semiring (no_index s.toSemiringSig) : Prop where
+class Rig : Prop extends Semiring (no_index s.toSemiringSig) where
   protected add_right_id (x) : x ⊹ 𝟘 = x
   protected mul_left_zero (x) : 𝟘 ⋆ x = 𝟘
   protected mul_right_zero (x) : x ⋆ 𝟘 = 𝟘
@@ -41,7 +41,7 @@ instance toAddCommMonoid : CommMonoid (no_index s.toAddMonoidSig) := CommMonoid.
 
 end Rig
 
-class CommRig extends CommSemiring (no_index s.toSemiringSig): Prop where
+class CommRig : Prop extends CommSemiring (no_index s.toSemiringSig) where
   protected add_right_id (x) : x ⊹ 𝟘 = x
   protected mul_right_zero (x) : x ⋆ 𝟘 = 𝟘
 
@@ -69,7 +69,7 @@ instance toRig : Rig s := Rig.infer s
 
 end CommRig
 
-class CancelRig extends Semiring (no_index s.toSemiringSig) : Prop where
+class CancelRig : Prop extends Semiring (no_index s.toSemiringSig) where
   protected add_right_id (x) : x ⊹ 𝟘 = x
   protected add_right_cancel (x) {y z} : y ⊹ x = z ⊹ x → y = z
 
@@ -108,7 +108,7 @@ instance toRig : Rig s := Rig.infer s
 
 end CancelRig
 
-class CancelCommRig extends CommSemiring (no_index s.toSemiringSig) : Prop where
+class CancelCommRig : Prop extends CommSemiring (no_index s.toSemiringSig) where
   protected add_right_id (x) : x ⊹ 𝟘 = x
   protected add_right_cancel (x) {y z} : y ⊹ x = z ⊹ x → y = z
 

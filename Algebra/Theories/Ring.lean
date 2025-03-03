@@ -16,7 +16,7 @@ local infixr:65 " ⊹ " => s.add
 local prefix:100 "∼" => s.neg
 local notation "𝟘" => s.zero
 
-class Ring extends Semiring (no_index s.toSemiringSig) : Prop where
+class Ring : Prop extends Semiring (no_index s.toSemiringSig) where
   protected add_right_id (x) : x ⊹ 𝟘 = x
   protected add_right_inv (x) : x ⊹ ∼x = 𝟘
 
@@ -41,7 +41,7 @@ instance toCancelRig : CancelRig (no_index s.toRigSig) := CancelRig.infer _
 
 end Ring
 
-class CommRing extends CommSemiring (no_index s.toSemiringSig): Prop where
+class CommRing: Prop extends CommSemiring (no_index s.toSemiringSig) where
   protected add_right_id (x) : x ⊹ 𝟘 = x
   protected add_right_inv (x) : x ⊹ ∼x = 𝟘
 
