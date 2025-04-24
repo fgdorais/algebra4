@@ -6,7 +6,6 @@ import Algebra.Signatures
 import Algebra.Identities
 import Algebra.Theories
 
-section instances
 open Algebra
 
 protected def Pos.sig : UnitalSemiringSig Pos where
@@ -83,4 +82,30 @@ scoped instance : Mul Int := ⟨Int.sig.mul⟩
 
 end Algebra.Notation
 
-end instances
+protected def Rat.sig : UnitalRingSig Rat where
+  add := Rat.add
+  mul := Rat.mul
+  neg := Rat.neg
+  zero := 0
+  one := 1
+
+instance Rat.instUnitalCommRing : UnitalCommRing Rat.sig where
+  add_assoc := Rat.add_assoc
+  add_comm := Rat.add_comm
+  add_right_id := Rat.add_zero
+  add_right_inv x := show x + -x = 0 by rw [← Rat.sub_eq_add_neg, Rat.sub_self]
+  mul_assoc := Rat.mul_assoc
+  mul_comm := Rat.mul_comm
+  mul_right_id := Rat.mul_one
+  mul_right_distrib := Rat.add_mul
+
+namespace Algebra.Notation
+
+scoped instance : OfNat Rat (nat_lit 0) := ⟨Rat.sig.zero⟩
+scoped instance : OfNat Rat (nat_lit 1) := ⟨Rat.sig.one⟩
+scoped instance : Neg Rat := ⟨Rat.sig.neg⟩
+scoped instance : Add Rat := ⟨Rat.sig.add⟩
+scoped instance : Sub Rat := ⟨Rat.sig.sub⟩
+scoped instance : Mul Rat := ⟨Rat.sig.mul⟩
+
+end Algebra.Notation
