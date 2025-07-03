@@ -195,7 +195,7 @@ theorem eval_lift {x : α} {xs : List α} (a : Expr xs) : eval s (Expr.lift x a)
 
 theorem eval_id [CommGroup s] : ∀ {xs : List α}, eval s (Expr.id (xs:=xs)) = s.id
 | [] => by
-  simp only [Expr.id, eval, split_cons, split_nil]
+  simp only [Expr.id, eval, split_nil]
   rw [Algebra.op_right_inv s.op]
 | _::_ => by
   unfold Expr.id
