@@ -442,7 +442,7 @@ def eval : Expr xs → α | ⟨a,_⟩ => Word.eval s a
   simp only [Expr.lift, eval]; rw [Word.eval_lift]
 
 @[simp] theorem eval_var (i : Index xs) : eval s (Expr.var i) = i.val := by
-  simp only [Expr.var, Expr.pos, Expr.id, eval]; rw [Word.eval_rpos, Word.eval_id, op_right_id s.op]
+  simp only [Expr.pos, Expr.id, eval]; rw [Word.eval_rpos, Word.eval_id, op_right_id s.op]
 
 omit [Group s] in
 @[simp] theorem eval_id : eval s (Expr.id (xs:=xs)) = s.id := by
@@ -477,7 +477,7 @@ variable (s : GroupSig α) [Group s]
 
 @[simp] instance instId {xs : List α} : Reflect s (no_index s.id) xs where
   expr := Expr.id
-  eval_eq := by simp [eval_eq]
+  eval_eq := by simp
 
 @[simp] instance instInv (x : α) {xs : List α} [Reflect s x xs] : Reflect s (no_index (s.inv x)) xs where
   expr := Expr.inv (expr s x)
