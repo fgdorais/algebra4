@@ -156,15 +156,13 @@ theorem eval_mk [CommGroup s] {xs : List α} (a b : CommMonoid.Expr xs) : eval s
   | cons x xs ih =>
     match a, b with
     | .cons m a, .cons n b =>
-      induction m, n using Nat.recDiagOn with
+      induction m, n using Nat.recDiagOn with simp_all only [Expr.mk]
       | zero_zero =>
-        unfold Expr.mk
         rw [CommMonoid.Expr.eval_cons_zero]
         rw [Int.zero_mk_zero, eval_cons_zero]
         rw [ih]
         rw [CommMonoid.Expr.eval_cons_zero]
       | zero_succ n ih' =>
-        unfold Expr.mk at ih' ⊢
         rw [CommMonoid.Expr.eval_cons_succ]
         rw [CommMonoid.Expr.eval_cons_zero]
         rw [Int.zero_mk_succ, eval_cons_neg_succ]
@@ -173,7 +171,6 @@ theorem eval_mk [CommGroup s] {xs : List α} (a b : CommMonoid.Expr xs) : eval s
         rw [Algebra.inv_hom s.inv]
         rw [Algebra.op_left_comm s.op]
       | succ_zero m ih' =>
-        unfold Expr.mk at ih' ⊢
         rw [CommMonoid.Expr.eval_cons_succ]
         rw [CommMonoid.Expr.eval_cons_zero]
         rw [Int.succ_mk_zero, eval_cons_pos_succ]
@@ -181,7 +178,6 @@ theorem eval_mk [CommGroup s] {xs : List α} (a b : CommMonoid.Expr xs) : eval s
         rw [CommMonoid.Expr.eval_cons_zero]
         rw [Algebra.op_assoc s.op]
       | succ_succ m n ih' =>
-        unfold Expr.mk at ih' ⊢
         rw [CommMonoid.Expr.eval_cons_succ]
         rw [CommMonoid.Expr.eval_cons_succ]
         rw [Int.succ_mk_succ, ih']
