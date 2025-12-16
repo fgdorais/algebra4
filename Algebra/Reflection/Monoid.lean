@@ -23,8 +23,8 @@ instance instDecidableEq : DecidableEq (Expr xs)
   match inferDecidable (a = b) with
   | isTrue rfl => isTrue rfl
   | isFalse h => isFalse fun | rfl => h rfl
-| ofSemigroup _, id => Decidable.isFalse Expr.noConfusion
-| id, ofSemigroup _ => Decidable.isFalse Expr.noConfusion
+| ofSemigroup _, id => Decidable.isFalse (by grind only)
+| id, ofSemigroup _ => Decidable.isFalse (by grind only)
 | id, id => Decidable.isTrue rfl
 
 def lift (x : α) {xs : List α} : Expr xs → Expr (x :: xs)
