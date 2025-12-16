@@ -22,17 +22,17 @@ variable {α} {xs : List α} {u v w : Word xs}
 
 instance instDecidableEq (xs : List α) : DecidableEq (Word xs)
 | id, id => isTrue rfl
-| id, pos _ _ => isFalse Word.noConfusion
-| id, neg _ _ => isFalse Word.noConfusion
-| pos _ _, id => isFalse Word.noConfusion
+| id, pos _ _ => isFalse (by grind only)
+| id, neg _ _ => isFalse (by grind only)
+| pos _ _, id => isFalse (by grind only)
 | pos i a, pos j b =>
   match inferDecidable (i = j), instDecidableEq xs a b with
   | isTrue rfl, isTrue rfl => isTrue rfl
   | isFalse h, _ => isFalse fun | rfl => h rfl
   | _, isFalse h => isFalse fun | rfl => h rfl
-| pos _ _, neg _ _ => isFalse Word.noConfusion
-| neg _ _, id => isFalse Word.noConfusion
-| neg _ _, pos _ _ => isFalse Word.noConfusion
+| pos _ _, neg _ _ => isFalse (by grind only)
+| neg _ _, id => isFalse (by grind only)
+| neg _ _, pos _ _ => isFalse (by grind only)
 | neg i a, neg j b =>
   match inferDecidable (i = j), instDecidableEq xs a b with
   | isTrue rfl, isTrue rfl => isTrue rfl

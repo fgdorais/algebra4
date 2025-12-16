@@ -24,8 +24,8 @@ instance instDecidableEq : DecidableEq (Expr xs)
   match inferDecidable (i = j) with
   | isTrue rfl => isTrue rfl
   | isFalse h => isFalse fun | rfl => h rfl
-| var _, app _ _ => isFalse Expr.noConfusion
-| app _ _, var _ => isFalse Expr.noConfusion
+| var _, app _ _ => isFalse (by grind only)
+| app _ _, var _ => isFalse (by grind only)
 | app a i, app b j =>
   match instDecidableEq a b, inferDecidable (i = j) with
   | isTrue rfl, isTrue rfl => isTrue rfl
