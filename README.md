@@ -1,3 +1,5 @@
+This repo has been moved to [lean4-exp/Algebra](https://github.com/fgdorais/lean4-exp/tree/main/Algebra)
+----
 # algebra4
 
 Algebra library for Lean 4.
